@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Box, Stack, Typography, Link } from '@mui/material';
 import Button from '@mui/material/Button';
 import * as yup from "yup"
@@ -25,6 +26,7 @@ const yupSchema= yup.object().shape({
 export default function Loginform(){
     const { login } = useAuthContext()
     const navigate = useNavigate()
+    const [userNotFound, setNotFound] = useState(false)
 
     const defaultValues = {
         Email: '',
@@ -43,9 +45,11 @@ export default function Loginform(){
                 Password: Password,
             },
         );
-    
+
+        navigate("/dashboard")
         }catch(err: any){
             console.error('An error occur', err.response?.data || err.message);
+            setNotFound(err.response?.data.notFound)
         }
     }
     
@@ -55,7 +59,6 @@ export default function Loginform(){
 
     const onSubmit = handleSubmit(async (data)=>{
        await handleLogin(data.Email, data.Password);
-       navigate("/dashboard")
     })
 
     const getUser = async() => {
@@ -71,7 +74,10 @@ export default function Loginform(){
         <Typography variant='h4' sx={{ml: 8, mb: -3, color: '#ffffff'}}>Bienvenido de nuevo</Typography>
             <Stack spacing={5} sx={{backgroundColor: "#ffffff", width: "30vw", 
                 height: 'auto', borderRadius: 5, ml: 15, mt: 5,  p: 7, boxShadow: '7px 10px 15px rgba(0, 0, 0, 0.5)'}}>
+                    <Box>
+                {userNotFound && <Typography color='error' typography='subtitle2' sx={{mb: 1.5, mt: -3.5}}>Correo o contraseña son incorrectos</Typography>}
                 <FieldTForm name="Email" label="Correo" variant="outlined" />
+                    </Box>
                 <FieldTForm name="Password" label="Contraseña" variant="outlined" />
                 <Box flexDirection="column">
                     <Button 
@@ -86,7 +92,6 @@ export default function Loginform(){
                     <Link variant='body2' underline="hover" href="#" color='inherit' sx={{mt: 1, ml: 2, 
                         display: "flex", justifySelf: "start", alignSelf: "start"}} >¿Olvidaste tu contraseña?</Link>
                 </Box>
-                <Button onClick={getUser}>Get user info</Button>
             </Stack>
             </FormManaged>
         </>
