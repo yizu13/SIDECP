@@ -29,7 +29,7 @@ interface Window {
     getTheme: () => Promise<'light' | 'dark' | 'system'>;
   }
   windowAPI: {
-    resizeWindow: (w: any, h:any) => Promise<void>,
+    resizeWindow: (w: number, h:number) => Promise<void>,
     setFullscreen: (flag: any) => Promise<void>,
     getScreenSize: () => Promise<{ width: number; height: number }>,
   }

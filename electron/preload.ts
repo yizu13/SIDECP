@@ -25,7 +25,7 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 })
 
 contextBridge.exposeInMainWorld('windowAPI', {
-  resizeWindow: (w: any, h:any) => ipcRenderer.invoke('resize-window', w, h),
+  resizeWindow: (w: any, h:any) => ipcRenderer.send('resize-window',{w, h}),
   setFullscreen: (flag: any) => ipcRenderer.invoke('set-fullscreen', flag),
   getScreenSize: async () => await ipcRenderer.invoke("get-screen-size"),
 });

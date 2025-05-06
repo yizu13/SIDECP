@@ -18,15 +18,15 @@ type Inputs ={
     Password: string;
 }
 
-const yupSchema= yup.object().shape({
-    Email: yup.string().email("Debe ser un email válido").required("Se requiere correo"),
-    Password: yup.string().required("Se requiere contraseña"),
-})
-
 export default function Loginform(){
     const { login } = useAuthContext()
     const navigate = useNavigate()
-    const [userNotFound, setNotFound] = useState(false)
+    const [userNotFound, setNotFound] = useState(false);
+
+    const yupSchema= yup.object().shape({
+        Email: yup.string().email("Debe ser un email válido").required("Se requiere correo"),
+        Password: yup.string().required("Se requiere contraseña"),
+    })
 
     const defaultValues = {
         Email: '',

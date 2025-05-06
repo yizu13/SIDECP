@@ -1,4 +1,4 @@
-import MainLayout from "../layaout/Layaout";
+import MainLayout from "../layout/Layout";
 import InicioPage from "./InicioPage";
 
 

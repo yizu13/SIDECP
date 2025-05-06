@@ -1,11 +1,14 @@
 import { Typography } from "@mui/material"
 import { Icon } from "@iconify/react"
+import { useNavigate } from "react-router-dom"
 
 type Props = {
     pageObject: any
 }
 
 export function TextPage({ pageObject }: Props){
+    const navigation = useNavigate()
+
     return(
         <Typography color='white' typography='h5' sx={{
             position: 'sticky',
@@ -24,17 +27,21 @@ export function TextPage({ pageObject }: Props){
 
             },
             typography: {
-                xs: 'subtitle1', // Small screens (mobile)
-                sm: 'h6', // Medium screens (tablet)
-                md: 'h5', // Large screens (desktop)
+                xs: 'subtitle1', 
+                sm: 'h6', 
+                md: 'h5', 
               }
             
-        }}>Inicio</Typography>
+        }}
+        onClick={()=>{navigation('/dashboard/inicio')}}
+        >Inicio</Typography>
     )
 }
 
 
 export function IconPage({ pageObject }: Props){
+    const navigation = useNavigate()
+    
     return(
         <Icon icon="line-md:home-simple-twotone" color='white' style={{
             position: 'sticky',
@@ -45,6 +52,8 @@ export function IconPage({ pageObject }: Props){
             padding: 5,
             transition: 'all 0.3s ease',
             backgroundColor: pageObject.page === 0 ? 'rgb(45, 119, 255)' : '',
-        }}/>
+        }}
+        onClick={()=>{navigation('/dashboard/inicio')}}
+        />
     )
 }

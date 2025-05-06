@@ -1,10 +1,11 @@
 import { ReactNode, useRef, useState } from 'react';
-import { Stack, Typography, Box } from '@mui/material';
+import { Stack, Box, Typography } from '@mui/material';
 import { useSettingContext } from '../../settingsComponent/contextSettings';
 import { Icon } from '@iconify/react'
 import {TextPage} from './pages_layout'
 import {IconPage} from './pages_layout'
 import {motion} from 'framer-motion'
+import { useNavigate } from 'react-router-dom';
 
 type props = {
     setPage: any
@@ -16,6 +17,7 @@ export default function MainLayout({ setPage, children }: props){
     const {theme, themefunc} = settings;
     const pageSelected = useRef(setPage) 
     const [changeSoft, setSoft] = useState(false)
+    const navigation = useNavigate()
 
         window.windowAPI.getScreenSize().then(
             (screenSize)=>{
@@ -86,6 +88,33 @@ export default function MainLayout({ setPage, children }: props){
                     bottom: 100,
                     cursor: 'pointer'
                 }}/>
+
+                <Typography color='white' typography='h5' sx={{
+                            position: 'fixed',
+                            m: 3, 
+                            mt: 5,
+                            cursor:'pointer',
+                            pl: 8,
+                            pr: 8,
+                            pt: 0.5,
+                            pb: 0.5,
+                            borderRadius: 10,
+                            transition: 'all 0.3s ease',
+                            '&:hover':{
+                                backgroundColor: 'rgb(45, 119, 255)',
+                            },
+                             bottom: 30,
+                            typography: {
+                                xs: 'subtitle1', // Small screens (mobile)
+                                sm: 'h6', // Medium screens (tablet)
+                                md: 'h5', // Large screens (desktop)
+                              }
+                            
+                        }}
+                        onClick={()=>{
+                            navigation('/logout')}}
+                        >Salir</Typography>
+
                 </Stack>}
 
                 {changeSoft && 

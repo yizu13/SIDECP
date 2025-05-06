@@ -3,6 +3,7 @@ import Login from '../login/login'
 import { lazy, Suspense, useEffect } from "react"
 import { useNavigate } from "react-router";
 import { Typography } from "@mui/material";
+import Logout from "../logout/logout";
 
 const InicioDash = lazy(()=> import('../Dashboard/Inicio/dashboard_inicio'))
 
@@ -29,7 +30,12 @@ export default function Router(){
                     path: "login",
                     element: <Login/>,
 
-                },
+                },{
+                    path: "logout",
+                    element: (
+                        <Logout/>
+                    )
+                }
             ]
             
         }, {

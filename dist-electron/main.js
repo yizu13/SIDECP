@@ -41,7 +41,7 @@ app.on("activate", () => {
   }
 });
 ipcMain.handle("resize-window", (_, width, height) => {
-  win == null ? void 0 : win.setSize(width, height);
+  win == null ? void 0 : win.setBounds(width, height);
 });
 ipcMain.handle("set-fullscreen", (_, flag) => {
   win == null ? void 0 : win.setFullScreen(flag);

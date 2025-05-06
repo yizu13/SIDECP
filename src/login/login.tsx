@@ -8,13 +8,12 @@ export default function Login(){
     const settings = useSettingContext()
     const {theme, themefunc} = settings;
 
-    // light Theme
-    themefunc(false);
-    window.electronTheme.setTheme(theme.palette.mode);
-    // size
-    window.windowAPI.resizeWindow(980, 720);
-    // full screen
-    window.windowAPI.setFullscreen(false);
+      themefunc(false);
+      window.electronTheme.setTheme(theme.palette.mode);
+      window.windowAPI.setFullscreen(false);
+      window.windowAPI.resizeWindow(980, 720);
+
+    console.log('hola')
 
     return (
       
@@ -24,3 +23,4 @@ export default function Login(){
 
     )
 }
+

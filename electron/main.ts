@@ -72,7 +72,7 @@ app.on('activate', () => {
 })
 
 ipcMain.handle('resize-window', (_,width, height)=>{
-  win?.setSize(width, height);
+        win?.setBounds(width, height);
 });
 
 ipcMain.handle('set-fullscreen', (_, flag)=>{

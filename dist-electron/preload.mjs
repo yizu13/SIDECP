@@ -21,7 +21,7 @@ electron.contextBridge.exposeInMainWorld("ipcRenderer", {
   // ...
 });
 electron.contextBridge.exposeInMainWorld("windowAPI", {
-  resizeWindow: (w, h) => electron.ipcRenderer.invoke("resize-window", w, h),
+  resizeWindow: (w, h) => electron.ipcRenderer.send("resize-window", { w, h }),
   setFullscreen: (flag) => electron.ipcRenderer.invoke("set-fullscreen", flag),
   getScreenSize: async () => await electron.ipcRenderer.invoke("get-screen-size")
 });
