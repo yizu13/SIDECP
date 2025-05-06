@@ -2,6 +2,7 @@ import { ReactNode, useState, useMemo, useEffect } from "react"
 import { Auth } from "./Contextauth"
 import axiosInstance from './axiosServer'
 import axiosLog from './AxiosLogServer'
+import { useNavigate } from "react-router-dom"
 
 type props = {
     children : ReactNode
@@ -18,6 +19,7 @@ export default function Authsystem({ children }: props){
     const [accessToken, setAccesToken] = useState('token');
     const [refreshToken, setrefreshToken] = useState('refresh');
     const [role, setRole] = useState('role')
+    const navigation = useNavigate()
 
     useEffect(()=>{
         const resRequest = axiosIntercep.interceptors.request.use(
@@ -52,6 +54,7 @@ export default function Authsystem({ children }: props){
                 originRequest.headers['authorization'] = `Bearer`
                 // send to login
                 await axiosLog.delete('/logout', { data: { token: refreshToken } });
+                navigation('/login')
                 return Promise.reject(errorRefresh);
             }
 

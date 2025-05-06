@@ -1,17 +1,20 @@
-import { Outlet, useRoutes } from "react-router"
+import { Outlet, useLocation, useRoutes } from "react-router"
 import Login from '../login/login'
-import Dashboard from '../Dashboard/dashboard'
-import { Suspense, useEffect } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import { useNavigate } from "react-router";
 import { Typography } from "@mui/material";
 
-
+const InicioDash = lazy(()=> import('../Dashboard/Inicio/dashboard_inicio'))
 
 export default function Router(){
     const navigate = useNavigate()
+    const location = useLocation()
+
     useEffect(()=>{
+        if(location.pathname === "/"){
         navigate("/login")
-    },[]);
+    }
+    },[navigate,location]);
 
     return useRoutes([
         {
@@ -33,9 +36,15 @@ export default function Router(){
             path: "/dashboard",
             element: (
                 <Suspense fallback={<Charging/>}>
-                    <Dashboard/>
+                    <Outlet/>
                     </Suspense>
             ),
+            children:[
+                {
+                    path: "inicio",
+                    element: <InicioDash/>
+                },
+            ]
         }
     ]);
 }

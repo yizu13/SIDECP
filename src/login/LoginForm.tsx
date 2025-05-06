@@ -46,7 +46,7 @@ export default function Loginform(){
             },
         );
 
-        navigate("/dashboard")
+        navigate("/dashboard/inicio")
         }catch(err: any){
             console.error('An error occur', err.response?.data || err.message);
             setNotFound(err.response?.data.notFound)

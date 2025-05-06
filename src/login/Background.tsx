@@ -41,7 +41,7 @@ export default function BackgroundLogin({ children } : componentsReact){
             alt="background"
             sx={{
               position: 'absolute',
-              top: -342.5,
+              top: -341,
               left: -320,
               width: 'auto',
               height: 'auto',
